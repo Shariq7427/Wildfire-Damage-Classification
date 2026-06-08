@@ -1,0 +1,84 @@
+# =====================
+# Python basics
+# =====================
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+*.so
+
+# virtual environments
+venv/
+env/
+ENV/
+.venv/
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# =====================
+# IDEs
+# =====================
+.vscode/
+.idea/
+*.swp
+
+# =====================
+# OS files
+# =====================
+.DS_Store
+Thumbs.db
+
+# =====================
+# ML / Data Science
+# =====================
+
+# Large datasets (VERY IMPORTANT)
+data/
+datasets/
+raw_data/
+processed_data/
+
+# Hugging Face cache
+.cache/
+huggingface/
+~/.cache/huggingface/
+
+# PyTorch / TensorFlow saved models
+*.pt
+*.pth
+*.h5
+*.keras
+*.ckpt
+saved_models/
+models/
+
+# Logs
+logs/
+*.log
+
+# TensorBoard
+runs/
+
+# MLflow
+mlruns/
+
+# Weights & Biases
+wandb/
+
+# =====================
+# Environment variables
+# =====================
+.env
+.env.*
+
+# =====================
+# Jupyter
+# =====================
+*.ipynb_checkpoints
+
+# =====================
+# Docker (optional)
+# =====================
+docker-compose.override.yml

@@ -121,11 +121,8 @@ with col4:
 # ==========================
 # Sidebar
 # ==========================
-st.sidebar.image(
-    "https://img.icons8.com/color/96/fire-element.png",
-    width=80
-)
-
+st.sidebar.image("https://img.icons8.com/color/96/fire-element.png", use_container_width=True)
+width=80
 st.sidebar.title("Wildfire AI")
 
 st.sidebar.markdown("---")
@@ -198,61 +195,32 @@ uploaded_file = st.file_uploader(
 )
 
 if uploaded_file is not None:
-
     image = Image.open(uploaded_file).convert("RGB")
 
-    col1, col2 = st.columns([1,1])
+    col1, col2 = st.columns(2)
 
     with col1:
-
-        st.subheader("🖼 Uploaded Image")
-
-        st.image(
-            image,
-            use_container_width=True
-        )
+        st.image(image, use_container_width=True)
 
     with col2:
-
-        st.subheader("🤖 AI Prediction")
-
         if st.button("🔥 Predict Damage"):
 
             img = image.resize((224,224))
-
-            img = np.array(img)
-
-            img = img.astype("float32")/255.0
-
+            img = np.array(img).astype("float32")/255.0
             img = np.expand_dims(img, axis=0)
 
             prediction = model.predict(img)
-
             probabilities = prediction[0]
 
             predicted_index = np.argmax(probabilities)
-
             predicted_class = class_names[predicted_index]
+            confidence = probabilities[predicted_index] * 100
 
-            confidence = probabilities[predicted_index]*100
+            st.success(f"{predicted_class} ({confidence:.2f}%)")
 
-            st.markdown(
-                f"""
-                <div class='prediction-card'>
-
-                <h2>Prediction</h2>
-
-                <h1 style='color:#d62828;'>{predicted_class.upper()}</h1>
-
-                <h3>Confidence : {confidence:.2f}%</h3>
-
-                </div>
-
-                """,
-                unsafe_allow_html=True
-            )
-
-            st.success("Prediction completed successfully!")
+            # now SAFE to build chart
+            fig = go.Figure(...)
+            st.plotly_chart(fig)
 # ==========================
 # Prediction Probabilities
 # ==========================
